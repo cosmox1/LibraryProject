@@ -1,5 +1,7 @@
 package LibraryProject.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 /** primul pas este sa creem un model de entitate
  * ce sa contina un nume si un tip
@@ -9,7 +11,7 @@ private final UUID id;
 private final String name;
 private final String autor;
 
-    public Book(UUID id, String name, String autor
+    public Book(@JsonProperty("id") UUID id, String name, @JsonProperty("autor") String autor
     ) {
         this.id = id;
         this.name = name;
