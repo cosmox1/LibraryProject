@@ -3,26 +3,39 @@ package LibraryProject.demo.controller;
 import LibraryProject.demo.model.Book;
 import LibraryProject.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RequestMapping("/api/v1/book")
 @RestController
 public class BookController {
-
-    /** adaugam resto controler si request maping
-     * injectam serviciiul si facem constructor
-     * creem metodele de add,delete,get,update**/
-
     private final BookService bookService;
 @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
+
     @PostMapping
     public void addBook(@RequestBody Book book){
-        bookService.addBook(book);
+    bookService.addBook(book);
+    }
+    @PutMapping(path = "{id}")
+    public void updateBook(@PathVariable("id")UUID id,@RequestBody Book book){
+    bookService.updateBook(id,book);
+    }
+    @GetMapping
+    public List<Book>getAllBooks(){
+    return bookService.selectAllBooks();
+    }
+    @GetMapping(path = "{id}")
+    public Optional<Book>getBookById(@PathVariable("id") UUID id){
+    return bookService.selectBookById(id);
+    }
+    @DeleteMapping(path = "{id}")
+    public void deleteBookById(@PathVariable("id") UUID id){
+    bookService.deleteBook(id);
     }
 }

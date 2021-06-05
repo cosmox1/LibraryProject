@@ -2,14 +2,21 @@ package LibraryProject.demo.database;
 
 import LibraryProject.demo.model.Book;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-/** pasul doi creem o interfata cu rol de db
- * unde punem metodele de insert delete select ,update
- * **/
+/** no void for this part**/
+//lastupdate 05.06.2021
 public interface BookDao {
-    int insertBook(UUID id, Book book);
-    default int insertBook(Book book){
+    int addBook(UUID id, Book book);
+    default int addBook(Book book){
         UUID id=UUID.randomUUID();
-        return insertBook(id,book);
+        return addBook(id,book);
     }
+
+    List<Book>selectAllBooks();
+    Optional<Book>selectBookById(UUID id);
+    int deleteBookById(UUID id);
+    int updateBookById(UUID id, Book book);
+
 }

@@ -3,7 +3,7 @@ package LibraryProject.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.UUID;
-
+//LastUpDate 05.06.2021
 public class Library {
     private final UUID id;
     private final String name;
@@ -13,11 +13,11 @@ public class Library {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public UUID getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
